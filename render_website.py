@@ -1,6 +1,7 @@
 import json
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from livereload import Server
+import os
 
 
 def load_books():
@@ -9,26 +10,26 @@ def load_books():
     return sorted(data_books, key=lambda book: book['title'])
 
 
-env = Environment(
-    loader=FileSystemLoader('.'),
-    autoescape=select_autoescape(['html', 'xml'])
-)
-
-template = env.get_template('template.html')
-
-
-def rebuild(path=None):
+def on_reload(path=None):
+    env = Environment(
+        loader=FileSystemLoader('.'),
+        autoescape=select_autoescape(['html', 'xml'])
+    )
+    template = env.get_template('template.html')
     books = load_books()
     rendered_page = template.render(books=books)
-    with open('index.html', 'w', encoding="utf8") as file:
-        file.write(rendered_page)
+    with open('index.html', 'w', encoding="utf8") as f:
+        f.write(rendered_page)
+    print(f"Site rebuilt at {os.path.getmtime('index.html')}")
+
+    print("Site rebuilt")
 
 
 if __name__ == '__main__':
-    rebuild()
+    on_reload()
 
     server = Server()
 
-    server.watch('template.html', rebuild)
-    server.watch('meta_data.json', rebuild)
+    server.watch('template.html', on_reload)
+    server.watch('meta_data.json', on_reload)
     server.serve(root='.')

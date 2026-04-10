@@ -55,6 +55,14 @@ def on_reload(path=None):
 if __name__ == '__main__':
     os.makedirs('pages', exist_ok=True)
     on_reload()
+    redirect_html = (
+        '<!DOCTYPE html>'
+        '<html><head>'
+        '<meta http-equiv="refresh" content="0; url=pages/index1.html">'
+        '</head><body></body></html>'
+    )
+    with open('index.html', 'w', encoding='utf-8') as f:
+        f.write(redirect_html)
 
     server = Server()
 

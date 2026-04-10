@@ -2,3 +2,5 @@
 /img
 index.html
 meta_data.json
+*.json
+.editorconfig

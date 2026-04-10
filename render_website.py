@@ -2,6 +2,7 @@ import json
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from livereload import Server
 from more_itertools import chunked
+import math
 import os
 
 
@@ -15,15 +16,18 @@ def get_pages():
     books = load_books()
     books_on_pages = 10
     chunks = list(chunked(books, books_on_pages))
-    all_pages = len(chunks)
+    total_pages = math.ceil(len(books) / books_on_pages)
+
     pages = []
     for page_num, book_group in enumerate(chunks, start=1):
         prev_page = f"index{page_num-1}.html" if page_num > 1 else None
-        next_page = f"index{page_num+1}.html" if page_num < all_pages else None
+        next_page = f"index{
+            page_num+1
+        }.html" if page_num < total_pages else None
         pages.append({
             'books': book_group,
             'current_page': page_num,
-            'total_pages': all_pages,
+            'total_pages': total_pages,
             'prev_link': prev_page,
             'next_link': next_page
         })

@@ -21,9 +21,9 @@ def get_pages():
     pages = []
     for page_num, book_group in enumerate(chunks, start=1):
         prev_page = f"index{page_num-1}.html" if page_num > 1 else None
-        next_page = f"index{
-            page_num+1
-        }.html" if page_num < total_pages else None
+        next_page = (
+            f"index{page_num+1}.html" if page_num < total_pages else None
+        )
         pages.append({
             'books': book_group,
             'current_page': page_num,

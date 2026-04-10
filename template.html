@@ -28,7 +28,7 @@
               <div class="card-body text-center">
                 <h5 class="card-title">{{ book.title }}</h5>
                 <p class="card-text">{{ book.author }}</p>
-                <p><a href="{{ book.book_path }}" class="ml-2" style="color: blue" target="_blank"
+                <p><a href="{{ book.book_path | urlencode }}" class="ml-2" target="_blank"
                     rel="noopener noreferrer">Читать</a></p>
               </div>
             </div>

@@ -58,8 +58,8 @@ def on_reload(path=None):
             prev_link=page['prev_link'],
             next_link=page['next_link']
         )
-    with open(filename, 'w', encoding="utf8") as file:
-        file.write(rendered_page)
+        with open(filename, 'w', encoding="utf8") as file:
+            file.write(rendered_page)
 
 
 if __name__ == '__main__':

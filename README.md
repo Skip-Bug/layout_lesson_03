@@ -7,7 +7,7 @@
 **[Открыть библиотеку](https://skip-bug.github.io/layout_lesson_03/)** — нажмите и читайте сразу, ничего не скачивая.
 
 ## 🖼️ Скриншот
-<img width="1915" height="1313" alt="Screenshot 2026-04-11 183637" src="https://github.com/user-attachments/assets/435b62c5-15ea-46d8-896d-1b1019b2ab3a" />
+<img width="1300" height="600" alt="Screenshot 2026-04-11 183637" src="https://github.com/user-attachments/assets/435b62c5-15ea-46d8-896d-1b1019b2ab3a" />
 ---
 
 ## 👨‍💻 Для разработчиков

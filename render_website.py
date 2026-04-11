@@ -14,6 +14,13 @@ def load_books():
 
 def get_pages():
     books = load_books()
+    for book in books:
+        book['genres_list'] = [
+            genre.strip()
+            for genre in book['genres'].replace('.', ',').split(',')
+            if genre.strip()
+        ]
+
     books_on_pages = 10
     chunks = list(chunked(books, books_on_pages))
     total_pages = math.ceil(len(books) / books_on_pages)
@@ -41,7 +48,6 @@ def on_reload(path=None):
     )
     template = env.get_template('template.html')
     pages = get_pages()
-
     for page in pages:
         books_rows = list(chunked(page['books'], 2))
         filename = os.path.join('pages', f"index{page['current_page']}.html")
@@ -52,8 +58,8 @@ def on_reload(path=None):
             prev_link=page['prev_link'],
             next_link=page['next_link']
         )
-        with open(filename, 'w', encoding="utf8") as file:
-            file.write(rendered_page)
+    with open(filename, 'w', encoding="utf8") as file:
+        file.write(rendered_page)
 
 
 if __name__ == '__main__':

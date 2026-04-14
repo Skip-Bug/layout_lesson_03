@@ -54,9 +54,9 @@ def get_pages(args):
 
     pages = []
     for page_num, book_group in enumerate(chunks, start=1):
-        prev_page = f"index{page_num-1}.html" if page_num > 1 else None
+        prev_page = f'index{page_num-1}.html' if page_num > 1 else None
         next_page = (
-            f"index{page_num+1}.html" if page_num < total_pages else None
+            f'index{page_num+1}.html' if page_num < total_pages else None
         )
         pages.append({
             'books': book_group,
@@ -104,7 +104,7 @@ def main():
                 prev_link=page['prev_link'],
                 next_link=page['next_link']
             )
-            with open(filename, 'w', encoding="utf8") as file:
+            with open(filename, 'w', encoding='utf-8') as file:
                 file.write(rendered_page)
     on_reload()
 

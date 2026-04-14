@@ -8,7 +8,7 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="../static/bootstrap.min.css">
-  
+
   <!--Favicon-->
   <link rel="icon" href="../media/favicon.svg" type="image/x-icon">
   <title>Books library</title>
@@ -22,11 +22,11 @@
         <li class="page-item {{ 'disabled' if not prev_link else '' }}">
           <a class="page-link" href="{{ prev_link or '#' }}">Предыдущая</a>
         </li>
-        {% for page_num in range(1, total_pages + 1) %}
-        <li class="page-item {{ 'active' if page_num == current_page else '' }}">
-          <a class="page-link" href="index{{ page_num }}.html">{{ page_num }}</a>
-        </li>
-        {% endfor %}
+          {% for page_num in range(1, total_pages + 1) %}
+            <li class="page-item {{ 'active' if page_num == current_page else '' }}">
+              <a class="page-link" href="index{{ page_num }}.html">{{ page_num }}</a>
+            </li>
+          {% endfor %}
         <li class="page-item {{ 'disabled' if not next_link else '' }}">
           <a class="page-link" href="{{ next_link or '#'}}">Следующая</a>
         </li>
@@ -34,30 +34,32 @@
     </nav>
     <!-- Книги -->
     {% for row in books_rows %}
-    <div class="row">
-      {% for book in row %}
-      <div class="col-6 mb-3">
-        <div class="card h-100">
-          <div class="row no-gutters">
-            <div class="col-12 col-sm-6">
-              <img src="../media/{{ book.img_src }}" class="card-img" alt="{{ book.title }} {{ book.author }}">
-            </div>
-            <div class="col-12 col-sm-6 d-flex align-items-center">
-              <div class="card-body text-center w-100 mt-3 mt-sm-0">
-                <h5 class="card-title">{{ book.title }}</h5>
-                <p class="card-text">{{ book.author }}</p>
-                {% for genre in book.genres_list %}
-                <h6><span class="badge badge-pill badge-light">{{ genre }}</span></h6>
-                {% endfor %}
-                <p><a href="../media/{{book.book_path | urlencode }}" target="_blank" rel="noopener noreferrer">Читать</a>
-                </p>
+      <div class="row">
+        {% for book in row %}
+          <div class="col-6 mb-3">
+            <div class="card h-100">
+              <div class="row no-gutters">
+                <div class="col-12 col-sm-6">
+                  <img src="../media/{{ book.img_src | urlencode }}" class="card-img"
+                    alt="{{ book.title }} {{ book.author }}">
+                </div>
+                <div class="col-12 col-sm-6 d-flex align-items-center">
+                  <div class="card-body text-center w-100 mt-3 mt-sm-0">
+                    <h5 class="card-title">{{ book.title }}</h5>
+                    <p class="card-text">{{ book.author }}</p>
+                      {% for genre in book.genres_list %}
+                        <h6><span class="badge badge-pill badge-light">{{ genre }}</span></h6>
+                      {% endfor %}
+                    <p><a href="../media/{{book.book_path | urlencode }}" target="_blank"
+                        rel="noopener noreferrer">Читать</a>
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        {% endfor %}
       </div>
-      {% endfor %}
-    </div>
     {% endfor %}
   </div>
   <!-- Optional JavaScript -->

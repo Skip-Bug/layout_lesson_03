@@ -11,8 +11,8 @@
 
 ## 📖 Читать книги офлайн
 Скачать репозитарий:
-открыть файл index.html
-<img width="600" height="300" alt="Screenshot 2026-04-14 173520" src="https://github.com/user-attachments/assets/175f7ed8-7e10-4b9f-9a4d-ee3f3875adfc" />
+открыть файл **index.html** - читать  
+## <img width="600" height="300" alt="Screenshot 2026-04-14 173520" src="https://github.com/user-attachments/assets/175f7ed8-7e10-4b9f-9a4d-ee3f3875adfc" />
 
 ## 👨‍💻 Для разработчиков
 

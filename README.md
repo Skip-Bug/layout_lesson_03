@@ -7,11 +7,13 @@
 **[Открыть библиотеку](https://skip-bug.github.io/layout_lesson_03/)** — нажмите и читайте сразу, ничего не скачивая.
 
 ## 🖼️ Скриншот
+
 ## <img width="600" height="300" alt="Screenshot 2026-04-11 183637" src="https://github.com/user-attachments/assets/435b62c5-15ea-46d8-896d-1b1019b2ab3a" />
 
 ## 📖 Читать книги офлайн
-Скачать репозитарий:
-открыть файл **index.html** - читать  
+
+Скачать репозиторий: Откройте файл **`index.html`** в браузере и читайте книги.
+
 ## <img width="600" height="300" alt="Screenshot 2026-04-14 173520" src="https://github.com/user-attachments/assets/175f7ed8-7e10-4b9f-9a4d-ee3f3875adfc" />
 
 ## 👨‍💻 Для разработчиков
@@ -30,6 +32,27 @@ cd layout_lesson_03
 pip install -r requirements.txt
 
 python render_website.py
+```
+
+**Аргументы запуска:**
+
+- `-db`, `--data_base` — путь к файлу с данными (по умолчанию `meta_data.json`)
+- `-bp`, `--books_on_pages` — количество книг на странице (по умолчанию `10`)
+
+**Примеры:**
+
+```bash
+# Запустить с настройками по умолчанию
+python render_website.py
+
+# Использовать другую базу данных
+python render_website.py -db my_books.json
+
+# Изменить количество книг на странице
+python render_website.py -bp 20
+
+# Комбинировать параметры
+python render_website.py -db books.json -bp 15
 ```
 
 Откройте `http://localhost:5500` в браузере.

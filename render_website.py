@@ -1,18 +1,41 @@
+"""Рендер страниц сайта для библиотеки."""
+import argparse
 import json
-from jinja2 import Environment, FileSystemLoader, select_autoescape
-from livereload import Server
-from more_itertools import chunked
 import math
 import os
 
+from jinja2 import Environment, FileSystemLoader, select_autoescape
+from livereload import Server
+from more_itertools import chunked
+
+
+def create_parser():
+    """Добавляет аргументы для скрипта."""
+    parser = argparse.ArgumentParser(
+        description='Книжная библиотека'
+    )
+    parser.add_argument(
+        '-db', '--data_base',
+        default='meta_data.json',
+        help='База библиотеки (meta_data.json по умолчанию)'
+    )
+    return parser
+
 
 def load_books():
-    with open('meta_data.json', 'r', encoding='utf-8') as file:
+    """Загружает книги из базы данных и возвращает отсортированный список."""
+    parser = create_parser()
+    args = parser.parse_args()
+    if not os.path.exists(args.data_base):
+        print(f'Файл {args.data_base} не найден')
+        return
+    with open(args.data_base, 'r', encoding='utf-8') as file:
         data_books = json.load(file)
     return sorted(data_books, key=lambda book: book['title'])
 
 
 def get_pages():
+    """Формирует список страниц для отображения книг с пагинацией."""
     books = load_books()
     for book in books:
         book['genres_list'] = [
@@ -42,6 +65,7 @@ def get_pages():
 
 
 def on_reload(path=None):
+    """Рендерит страницы сайта для библиотеки."""
     env = Environment(
         loader=FileSystemLoader('.'),
         autoescape=select_autoescape(['html', 'xml'])

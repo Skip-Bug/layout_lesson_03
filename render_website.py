@@ -87,6 +87,8 @@ def on_reload(path=None):
 
 
 if __name__ == '__main__':
+    parser = create_parser()
+    args = parser.parse_args()
     os.makedirs('pages', exist_ok=True)
     on_reload()
     redirect_html = (
@@ -101,5 +103,5 @@ if __name__ == '__main__':
     server = Server()
 
     server.watch('template.html', on_reload)
-    server.watch('meta_data.json', on_reload)
+    server.watch(args.data_base, on_reload)
     server.serve(root='.')
